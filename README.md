@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🤖 Image Identifier AI
 
-## Getting Started
+Aplikasi identifikasi gambar berbasis AI/ML sederhana. Upload foto, mesin akan identifikasi, dan tampilkan teks hasil identifikasinya. Hanya menampilkan hasil dengan confidence > 90%.
 
-First, run the development server:
+## ✨ Fitur
+
+- ✅ Upload foto otomatis
+- ✅ Identifikasi gambar real-time dengan AI
+- ✅ Filter hasil confidence > 90%
+- ✅ Preview gambar sebelum identifikasi
+- ✅ UI modern dan responsif
+
+## 🚀 Quick Start (5-15 menit)
+
+### Prasyarat
+- Node.js v18+ 
+- Python 3.8+
+- pip
+
+### Step 1: Setup Frontend (Next.js)
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Frontend akan berjalan di `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Step 2: Setup Backend (Python)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Di terminal baru
+cd comp-vision-v1
 
-## Learn More
+# Buat virtual environment (recommended)
+python -m venv venv
 
-To learn more about Next.js, take a look at the following resources:
+# Activate virtual environment
+# Windows:
+venv\Scripts\activate
+# macOS/Linux:
+source venv/bin/activate
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Install requirements
+pip install -r requirements.txt
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Run Flask server
+python backend_server.py
+```
 
-## Deploy on Vercel
+Backend akan berjalan di `http://localhost:5000`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Step 3: Buka Aplikasi
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Buka di browser: **http://localhost:3000**
+
+Upload foto → tunggu identifikasi → lihat hasil ✅
+
+## 📁 Struktur Project
+
+```
+comp-vision-v1/
+├── app/
+│   ├── components/
+│   │   └── ImageIdentifier.tsx    # Main React component
+│   ├── page.tsx                   # Home page
+│   └── layout.tsx
+├── backend_server.py              # Flask server untuk ML
+├── requirements.txt               # Python dependencies
+├── package.json                   # Node.js dependencies
+└── README.md
+```
+
+## 🛠️ Technology Stack
+
+**Frontend:**
+- Next.js 14 dengan TypeScript
+- Tailwind CSS
+- Lucide Icons
+
+**Backend:**
+- Python Flask
+- Hugging Face Transformers
+- PyTorch
+- Pillow (image processing)
+
+## 📊 Hasil Identifikasi
+
+Aplikasi menggunakan Vision Transformer (ViT) model dari Google:
+- ✅ Menampilkan hasil jika confidence > 90%
+- ⚠️ Jika tidak ada hasil > 90%, tampilkan "closest match"
+- 📈 Confidence score dalam persentase
+
+## 🔧 Troubleshooting
+
+### Error: "Cannot connect to server"
+- Pastikan backend berjalan: `python backend_server.py`
+- Check port 5000 tidak dipakai aplikasi lain
+
+### Error: "ModuleNotFoundError"
+- Run: `pip install -r requirements.txt`
+
+### Slow processing
+- Model pertama download ~500MB
+- Tunggu download selesai
+- Request berikutnya lebih cepat
+
+## 📝 Notes
+
+- Model: Google ViT-Base-Patch16-224
+- Processing time: ~2-5 detik
+- Image size: < 10MB
+- Format: JPG, PNG, WebP
+
+---
+
+**Selamat menggunakan! 🎉**

@@ -28,6 +28,36 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+.env
+.env.local
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.huggingface/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Model cache
+*.bin
+*.pt
+*.pth
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
