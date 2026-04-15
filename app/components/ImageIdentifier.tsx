@@ -9,6 +9,8 @@ interface ClassificationResult {
   score: number;
 }
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
 export default function ImageIdentifier() {
   const [image, setImage] = useState<string | null>(null);
   const [results, setResults] = useState<ClassificationResult[]>([]);
@@ -46,7 +48,7 @@ export default function ImageIdentifier() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:5000/api/identify', {
+      const response = await fetch(`${API_URL}/api/identify`, {
         method: 'POST',
         body: formData,
       });
@@ -142,7 +144,7 @@ export default function ImageIdentifier() {
                 <p className="font-semibold text-red-700">Error</p>
                 <p className="text-red-600">{error}</p>
                 <p className="text-sm text-red-500 mt-2">
-                  ⚠️ Pastikan backend server berjalan di port 5000
+                  ⚠️ Pastikan backend server berjalan dan accessible
                 </p>
               </div>
             </div>
